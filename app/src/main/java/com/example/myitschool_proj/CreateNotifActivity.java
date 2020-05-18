@@ -60,6 +60,7 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
         notif_id = getIntent().getIntExtra("ID", -1);
         if (notif_id != -1) {
             try {
+                setTitle("Редактировать событие");
                 Notification notification = interactor.getOne(notif_id);
                 et_title.setText(notification.getTitle());
                 et_description.setText(notification.getDescription());
