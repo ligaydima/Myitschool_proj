@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Myitschool_proj</string>
+    <string name="title_activity_create_notif">CreateNotifActivity</string>
+    <string name="et_date_btn_text">Ввести дату</string>
+    <string name="enter_title_text">Введите название</string>
+    <string name="et_time_btn_text">ввести время</string>
+    <string name="et_desc_text">Введите описание</string>
+    <string name="submit_btn_text">ОК</string>
+    <string name="db_name">notifications.db</string>
+    <string name="et_notif_time_text">Введите, за сколько минут предупредить о событии</string>
+    <string name="btn_delete_text">Удалить</string>
+    <string name="channel_reminder_name">channel_reminder</string>
+    <string name="channel_alarm_name">channel_alarm</string>
+</resources>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".CreateNotifActivity"
+    tools:showIn="@layout/activity_create_notif">
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="336dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/text_0"
+        app:layout_constraintTop_toBottomOf="@+id/text_0" />
+
+    <TextView
+        android:id="@+id/text_0"
+        android:layout_width="187dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/enter_title_text"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_date"
+        android:layout_width="186dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="@+id/et_title"
+        app:layout_constraintTop_toBottomOf="@+id/et_title" />
+
+    <EditText
+        android:id="@+id/et_time"
+        android:layout_width="186dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/et_date"
+        app:layout_constraintTop_toBottomOf="@+id/et_date" />
+
+    <Button
+        android:id="@+id/et_date_btn"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:text="@string/et_date_btn_text"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/et_date"
+        app:layout_constraintTop_toTopOf="@+id/et_date" />
+
+    <Button
+        android:id="@+id/et_time_btn"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:text="@string/et_time_btn_text"
+
+        app:layout_constraintStart_toEndOf="@+id/et_time"
+        app:layout_constraintTop_toTopOf="@+id/et_time" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="338dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="152dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/et_time"
+        app:layout_constraintTop_toBottomOf="@+id/et_time" />
+
+    <TextView
+        android:id="@+id/text_et_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="@string/et_desc_text"
+        app:layout_constraintStart_toStartOf="@+id/et_time"
+        app:layout_constraintTop_toBottomOf="@+id/et_time" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="148dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/submit_btn_text"
+        app:layout_constraintStart_toStartOf="@+id/et_description"
+        app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
+    <TextView
+        android:id="@+id/text_notif_time"
+        android:layout_width="191dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/et_notif_time_text"
+        app:layout_constraintStart_toStartOf="@+id/et_time"
+        app:layout_constraintTop_toBottomOf="@+id/et_time" />
+
+    <EditText
+        android:id="@+id/et_notif_time"
+        android:layout_width="124dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/text_notif_time"
+        app:layout_constraintTop_toBottomOf="@+id/et_time_btn" />
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="93dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="36dp"
+        android:text="@string/btn_delete_text"
+        app:layout_constraintStart_toEndOf="@+id/submit_btn"
+        app:layout_constraintTop_toTopOf="@+id/submit_btn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
