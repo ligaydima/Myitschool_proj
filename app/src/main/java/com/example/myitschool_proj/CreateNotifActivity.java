@@ -39,7 +39,7 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
         createNotificationChannel();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setTitle("Создать событие");
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +61,8 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
         if (notif_id != -1) {
             try {
                 Notification notification = interactor.getOne(notif_id);
-                Log.e("deb", "got item");
                 et_title.setText(notification.getTitle());
                 et_description.setText(notification.getDescription());
-                Log.e("deb", notification.getNotif_time().toString());
 //                et_time.setText(String.format("%d:%d", hour, minute));
                 String td = notification.getTime().toString();
                 et_date.setText(td.substring(0, 10));
@@ -108,28 +106,21 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
         return new Pair<>(pendingIntent, pendingIntent2);
     }
     private void create_notifications(Notification cur_notif) {
-        try {
-            Pair<PendingIntent, PendingIntent> p = get_pi_for_notif(cur_notif);
-            PendingIntent pendingIntent = p.first;
-            PendingIntent pendingIntent2 = p.second;
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, cur_notif.getTime().getTime() + cur_notif.getId() % 1000, pendingIntent2);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, cur_notif.getNotif_time().getTime() + cur_notif.getId() % 1000, pendingIntent);
-        } catch (Exception e) {
-            Toast.makeText(this, "LOOOL", Toast.LENGTH_SHORT).show();
-        }
+        Pair<PendingIntent, PendingIntent> p = get_pi_for_notif(cur_notif);
+        PendingIntent pendingIntent = p.first;
+        PendingIntent pendingIntent2 = p.second;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cur_notif.getTime().getTime() + cur_notif.getId() % 1000, pendingIntent2);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cur_notif.getNotif_time().getTime() + cur_notif.getId() % 1000, pendingIntent);
+
     }
     private void delete_notifications(Notification cur_notif) {
-        try {
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            Pair<PendingIntent, PendingIntent> p = get_pi_for_notif(cur_notif);
-            PendingIntent pendingIntent = p.first;
-            PendingIntent pendingIntent2 = p.second;
-            alarmManager.cancel(pendingIntent);
-            alarmManager.cancel(pendingIntent2);
-        } catch (Exception e) {
-            Log.e("NOTIF", "er del");
-        }
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Pair<PendingIntent, PendingIntent> p = get_pi_for_notif(cur_notif);
+        PendingIntent pendingIntent = p.first;
+        PendingIntent pendingIntent2 = p.second;
+        alarmManager.cancel(pendingIntent);
+        alarmManager.cancel(pendingIntent2);
     }
     public void onClick(View v) {
         if (v == et_date_btn) {
@@ -155,7 +146,6 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
         }
         if (v == et_time_btn) {
 
-            Log.e("et", "time");
             // Get Current Time
             final Calendar c = Calendar.getInstance();
             int mHour = c.get(Calendar.HOUR_OF_DAY);
@@ -193,7 +183,7 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
                 if (code == -1) throw new RuntimeException();
                 notification.setId((int) code);
                 create_notifications(notification);
-                Log.d("NOTIF", notification.toString());
+                Toast.makeText(this, "Успешно создано", Toast.LENGTH_SHORT).show();
                 finish();
             } catch (Exception e) {
                 Toast.makeText(this, "Ошибка" , Toast.LENGTH_SHORT).show();
@@ -204,6 +194,7 @@ public class CreateNotifActivity extends AppCompatActivity implements View.OnCli
                 Notification notification = interactor.getOne(notif_id);
                 if (!interactor.deleteOne(notif_id)) throw new RuntimeException();
                 delete_notifications(notification);
+                Toast.makeText(this, "Успешно удалено", Toast.LENGTH_SHORT).show();
                 finish();
             } catch (Exception e) {
                 Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT).show();
