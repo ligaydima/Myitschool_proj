@@ -50,7 +50,7 @@ public class DBInteractor extends SQLiteOpenHelper {
     public long addOne(Notification notification) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        Log.e("DT", notification.getTime().toString());
+
         cv.put(COLUMN_TIME_NAME, notification.getTime().toString());
         cv.put(COLUMN_NOTIF_TIME_NAME, notification.getNotif_time().toString());
         cv.put(COLUMN_DESCRIPTION_NAME, notification.getDescription());
@@ -62,11 +62,7 @@ public class DBInteractor extends SQLiteOpenHelper {
     public void deletePassed() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME + " WHERE DATETIME(" + COLUMN_TIME_NAME + ")<= DATETIME('now', 'localtime')";
-        Log.e("DEL", "DATETIME(" + COLUMN_TIME_NAME + ")<=Datetime('now')");
         db.execSQL(query);
-        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_TIME_NAME + ">datetime('2000-1-1')";
-        Cursor cur = db.rawQuery(queryString, null);
-        Log.e("SZ", String.valueOf(cur.getCount()));
         db.close();
     }
     public boolean deleteOne(int id1) {
@@ -83,7 +79,6 @@ public class DBInteractor extends SQLiteOpenHelper {
             int id = cur.getInt(0);
             String title = cur.getString(1);
             String description = cur.getString(2);
-            Log.e("DB", Timestamp.valueOf(cur.getString(3)).toString());
             Timestamp time = Timestamp.valueOf(cur.getString(3));
             Timestamp notif_time = Timestamp.valueOf(cur.getString(4));
             Notification cur_not = new Notification(title, time, notif_time,description, id);
